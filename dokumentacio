@@ -1,0 +1,963 @@
+BGéSZC Szily Kálmán Technikum és Kollégium
+Szoftverfejlesztő és -tesztelő szak
+DIGITPET
+Vizsgaremek dokumentáció
+Készítette: Horváth Noel, Vincze Gergő József, Malomi-Kovács Bence Péter
+Konzulens: Lipák Tibor
+Projekt típusa: Webes rendszer (Webshop) + NFC + 3D nyomtatott biléta
+2026
+DigitPET – Vizsgaremek dokumentáció
+2
+Tartalomjegyzék
+Tartalomjegyzék 2
+1. Projekt bemutatása 3
+2. A projekt célja 3
+3. Előzmények és az ötlet megszületése 4
+4. Az NFC technológia és a 3D nyomtatás szakmai bemutatása 4
+4.1 A 3D nyomtatás technológia részletes szakmai bemutatása 7
+5. A biléta tervezése és gyártása a gyakorlatban 11
+6. A projekt kezdeti fázisai 15
+7. A fejlesztéshez használt programok és technológiák részletes bemutatása 16
+7.1 HTML – a weboldal szerkezeti felépítése 16
+7.2 CSS – megjelenés, dizájn és reszponzivitás 17
+7.3 PHP – backend és dinamikus működés 17
+7.4 Visual Studio Code – részletes fejlesztői környezet bemutatás 19
+7.5 phpMyAdmin – adatbázis kezelőfelület részletes bemutatása 20
+7.6 A XAMPP környezet és a phpMyAdmin adatbázis-kezelő részletes bemutatása 21
+7.7 GitHub – felhőalapú mentés és verziókövetés 25
+7.8 WinSCP – szerverre feltöltés és fájlszinkronizáció 26
+7.9 nethely.hu – ingyenes webtárhely használata 26
+8. Adatbázis-tervezés és logikai felépítés 27
+9. Projektstruktúra és fájlszervezés 27
+10. Hibakeresés és tesztelés részletes bemutatása 28
+11. Telepítés, üzembe helyezés és biztonsági szempontok 30
+12. Összegzés 33
+13. Továbbfejlesztési lehetőségek 33
+14. Melléklet – Javasolt szóbeli védési pontok és szakmai kiemelések 37
+
+DigitPET – Vizsgaremek dokumentáció
+3
+1. Projekt bemutatása
+A DigitPET projekt egy modern, innovatív és valós problémára reagáló fejlesztés, amelynek
+célja a házi kedvencek azonosításának korszerűsítése. A jelenlegi, bőr alá ültetett chipes
+megoldások elterjedtek, ugyanakkor a kiolvasásukhoz jellemzően speciális eszköz szükséges.
+Ez a gyakorlatban azt jelenti, hogy egy hétköznapi megtaláló sokszor nem tud azonnal segíteni,
+hiába szeretné visszajuttatni az elkóborolt állatot a gazdájához.
+A mi megoldásunk ezzel szemben abból indul ki, hogy ma már szinte mindenkinek van NFCképes okostelefonja. Ezért egy olyan 3D nyomtatott bilétát készítettünk, amelybe NFC-chip
+kerül, és amely a nyakörvre rögzíthető. A bilétát a megtaláló egyszerűen a telefonjához érinti,
+és azonnal megnyílik a kedvenc adatlapja, ahol elérhető a neve, a gazdi elérhetősége, esetleges
+orvosi információk és más, a gyors visszajuttatást segítő adatok.
+A DigitPET projekt értéke abban rejlik, hogy egyszerre tartalmaz szoftveres és hardveres
+elemeket. A weboldal fejlesztése, az adatbázis-kezelés, a tárhelyre telepítés, az NFCtechnológia használata és a 3D nyomtatás mind egyetlen összetett rendszerben találkozik.
+Emiatt a projekt kiválóan alkalmas arra, hogy bemutassa a csapat szakmai tudását, kreativitását
+és problémamegoldó gondolkodását.
+2. A projekt célja
+A DigitPET projekt elsődleges célja az volt, hogy biztonságosabbá, gyorsabbá és modernebbé
+tegyük a házi kedvencek azonosítását. Egy olyan megoldást szerettünk volna létrehozni, amely
+a mindennapi emberek számára is azonnal használható, és nem igényel külön szakmai eszközt.
+A rendszer középpontjában az a gondolat áll, hogy egy elkóborolt kutya vagy más háziállat
+megtalálásakor a megtaláló saját telefonjával egyből hozzáférjen a szükséges adatokhoz.
+A konkrét megvalósítás egy NFC-chippel ellátott, 3D nyomtatott biléta, amely a nyakörvre
+rögzíthető. A bilétához kapcsolódó webes felületen a gazdi kezelheti a kisállat adatait, például
+a nevét, a gazda elérhetőségeit, címet, orvosi információkat, megjegyzéseket vagy más releváns
+adatokat. Ezzel a rendszer egyszerre szolgálja a biztonságot, a kényelmet és a modern digitális
+felhasználást.
+DigitPET – Vizsgaremek dokumentáció
+4
+Hosszú távú célként azt is megfogalmaztuk, hogy az NFC-alapú azonosítás egyre fejlettebbé
+váljon, és idővel egy olyan irányba fejlődjön, amely még több kényelmi funkciót biztosít. Bár
+az NFC jelenleg nem valós idejű nyomkövetésre készült, a projekt jövőképe az, hogy a
+kisállatok digitális azonosítása egyszerűbb, humánusabb és technológiailag korszerűbb
+alternatívát jelentsen.
+3. Előzmények és az ötlet megszületése
+Hárman dolgozunk a projekten, és mindannyian szoftverfejlesztő szakos diákok vagyunk. A
+tanulmányaink során megismerkedtünk a 3D nyomtatás világával, amely annyira megtetszett
+nekünk, hogy az iskolán kívül is elkezdtünk vele foglalkozni. Kísérleteztünk különböző
+modellekkel, anyagokkal és nyomtatási beállításokkal, így hamar ráéreztünk arra, hogy ez a
+technológia mennyire sokoldalúan felhasználható.
+Ezzel párhuzamosan egyre jobban elterjedt az NFC-technológia is. A telefonos fizetés, a
+digitális névjegykártyák és más hétköznapi felhasználások miatt világossá vált számunkra, hogy
+az NFC már nem valamilyen távoli vagy különleges technológia, hanem egy olyan eszköz,
+amely a mindennapi élet része. Innen jött az ötlet: ha kulcstartókban, kártyákban vagy
+névjegyekben működik, akkor miért ne működhetne kisállat bilétában is?
+A projekt tehát valójában két érdeklődési terület találkozásából született: a 3D nyomtatás és az
+NFC-technológia összekapcsolásából. Mivel mindannyian szeretjük az állatokat, egyből egy
+olyan felhasználási területet kerestünk, ahol ez nemcsak látványos, hanem valóban hasznos is.
+Így született meg a DigitPET ötlete.
+4. Az NFC technológia és a 3D nyomtatás szakmai bemutatása
+Az NFC (Near Field Communication) egy rövid hatótávolságú, nagyfrekvenciás vezeték nélküli
+kommunikációs technológia, amely lehetővé teszi az eszközök közötti adatcserét néhány
+centiméteres távolságon belül. Az NFC a 13,56 MHz-es ISM frekvenciasávban működik, és
+nemzetközi szabványokra épül, mint például az ISO/IEC 14443 és az ISO/IEC 18092. A
+technológia egyik legfontosabb jellemzője a gyors és automatikus kapcsolatfelépítés, amely
+nem igényel külön párosítási folyamatot, így felhasználóbarát megoldást biztosít.
+DigitPET – Vizsgaremek dokumentáció
+5
+Az NFC működése három alapvető üzemmódban történhet:
+● Olvasó/író mód (Reader/Writer) – az eszköz NFC tageket olvas vagy ír
+● Kártyaemulációs mód (Card Emulation) – az eszköz intelligens kártyaként
+viselkedik (pl. mobilfizetés)
+● Peer-to-peer mód – két aktív eszköz közvetlen adatcserét végez
+A DigitPET projektben az olvasó/író módot alkalmaztuk, ahol egy okostelefon képes kiolvasni
+a bilétába integrált NFC chip tartalmát. A rendszer passzív NFC tagekre épül, amelyek nem
+rendelkeznek saját energiaforrással, így működésükhöz az olvasó eszköz által generált
+elektromágneses mezőt használják fel.
+Az NFC technológia elektronikai háttere
+Az NFC az RFID technológia egy speciális esete, amely induktív csatoláson alapul. A
+működés során az aktív eszköz (pl. okostelefon) váltakozó elektromágneses mezőt hoz létre
+egy tekercs segítségével. Amikor egy passzív NFC tag ebbe a mezőbe kerül, az abban
+található antenna (tekercs) feszültséget indukál, amely elegendő energiát biztosít az integrált
+áramkör működéséhez.
+Az adatátvitel a mező modulálásával történik:
+● Az olvasó eszköz amplitúdó modulációval (ASK) küldi az adatokat
+● A passzív tag load modulation segítségével válaszol
+Egy NFC tag főbb hardveres elemei:
+● Antenna (tekercs) – elektromágneses csatolás biztosítása
+● Integrált áramkör (IC) – vezérlő logika és kommunikáció
+● Nem felejtő memória (EEPROM) – adatok tárolása
+A gyakorlatban elterjedt NFC chipek (pl. NTAG213, NTAG215, NTAG216) különböző
+tárolókapacitással rendelkeznek, és alkalmasak URL-ek, szöveges adatok vagy egyéb
+DigitPET – Vizsgaremek dokumentáció
+6
+rekordok tárolására. A DigitPET rendszerben ezek közül olyan típust alkalmaztunk, amely
+elegendő memóriát biztosít egy webes hivatkozás tárolására.
+NFC Tools mobilalkalmazás alkalmazása a projektben
+A fejlesztés során az NFC tagek programozására, tesztelésére és karbantartására a NFC Tools
+mobilalkalmazást használtuk. Az alkalmazás egyik legnagyobb előnye, hogy intuitív
+felhasználói felületet biztosít, így lehetővé teszi az NFC chipek kezelését programozási
+környezet nélkül is.
+Az alkalmazás Android és iOS operációs rendszereken egyaránt elérhető, és széles körű
+funkcionalitást kínál mind fejlesztési, mind tesztelési célokra.
+Az alkalmazás főbb funkciói
+Funkció Részletes leírás
+Olvasás (Read) Az NFC tag teljes tartalmának kiolvasása, beleértve a rekordstruktúrát
+és az adattípusokat
+Írás (Write) Új rekordok (pl. URL, szöveg, kontaktadat) írása a chip memóriájába
+Formázás (Format) A chip teljes memóriájának törlése és alapállapotba állítása
+Zárolás (Lock) Az NFC tag végleges írásvédetté tétele, amely után az adatok nem
+módosíthatók
+Rekordkezelés Több rekord egyidejű kezelése (pl. URL + szöveg kombinációja)
+Profilok (Profiles) Automatizált műveletek létrehozása NFC érintéshez kötve
+Tesztelés és
+diagnosztika Az NFC tag működésének ellenőrzése, kompatibilitás vizsgálata
+DigitPET – Vizsgaremek dokumentáció
+7
+Támogatott adattípusok
+Adattípus Felhasználási példa
+URL Weboldal megnyitása (pl. állat adatlapja)
+Szöveg Rövid információk tárolása
+Telefonszám Közvetlen hívás indítása
+E-mail Előre kitöltött e-mail küldése
+WiFi Automatikus hálózati csatlakozás
+Bluetooth Eszköz párosítása
+A projekt során elsősorban URL típusú rekordokat használtunk, amelyek egy webes felületre
+irányítják a felhasználót, ahol részletes információk találhatók az adott állatról.
+4.1 A 3D nyomtatás technológia részletes szakmai bemutatása
+A 3D nyomtatás egy additív gyártási eljárás, amely során egy digitális modell alapján fizikai
+tárgy jön létre rétegről rétegre történő anyagfelhordással. A DigitPET projektben alkalmazott
+technológia az FDM (Fused Deposition Modeling), amely a legelterjedtebb eljárás a hobbi és
+kisipari felhasználásban, köszönhetően kedvező költségének és egyszerű használhatóságának.
+Az FDM nyomtatás során egy hőre lágyuló műanyag szál (filament) kerül felhasználásra,
+amelyet a nyomtató extrudere megolvaszt, majd egy fúvókán (nozzle) keresztül, pontosan
+vezérelve lerétegez a tárgyasztalra (print bed). A rétegek egymásra épülve hozzák létre a
+végső modellt.
+A projektben használt 3D nyomtatók
+A DigitPET rendszer fejlesztése során két különböző típusú 3D nyomtatót alkalmaztunk:
+● Bambu Lab 3D nyomtatók
+DigitPET – Vizsgaremek dokumentáció
+8
+● Creality Ender sorozat
+Bambu Lab nyomtatók jellemzői
+A Bambu Lab nyomtatók modern, nagy sebességű és részben automatizált eszközök, amelyek
+számos fejlett funkcióval rendelkeznek:
+● Automatikus ágykiegyenlítés (auto bed leveling)
+● Beépített szenzorok (pl. filament érzékelés)
+● Zárt rendszer (jobb hőstabilitás)
+● Nagy nyomtatási sebesség
+● Több színű nyomtatás támogatása (AMS rendszerrel)
+A nyomtatókhoz tartozik a Bambu Handy mobilalkalmazás, amely jelentősen megkönnyíti a
+használatot.
+A Bambu Handy alkalmazás főbb funkciói
+Funkció Leírás
+Távoli vezérlés Nyomtatás indítása/leállítása telefonról
+Élőkép (kamera) A nyomtatás valós idejű megfigyelése
+Állapotkövetés Hőmérséklet, folyamat állapotának figyelése
+Értesítések Nyomtatás befejezéséről vagy hibáról
+Modell kezelés Felhőből történő modellek indítása
+Ez az alkalmazás lehetővé teszi, hogy a felhasználó fizikailag ne tartózkodjon a nyomtató
+közelében, mégis teljes kontrollt gyakoroljon a folyamat felett.
+Creality Ender sorozat jellemzői
+DigitPET – Vizsgaremek dokumentáció
+9
+A Creality Ender sorozat (pl. Ender 3) széles körben elterjedt, költséghatékony 3D nyomtató
+család, amely kiválóan alkalmas tanulásra és egyedi projektek kivitelezésére.
+Főbb jellemzők:
+● Nyitott felépítés
+● Manuális vagy félautomata kalibráció
+● Széles körű alkatrész és közösségi támogatás
+● Jó ár-érték arány
+Az Ender nyomtatók használata nagyobb felhasználói beavatkozást igényel (pl. ágy szintezés),
+viszont jobban megérthető rajtuk a 3D nyomtatás működése.
+Szeletelő szoftver (Slicer) – Ultimaker Cura
+A modellek nyomtatásához a Ultimaker Cura legújabb verzióját használtuk, amely az egyik
+legnépszerűbb slicing szoftver.
+A slicer feladata:
+● A 3D modell rétegekre bontása
+● G-kód generálása (nyomtató vezérlő utasítások)
+● Nyomtatási paraméterek beállítása
+Cura főbb funkciói
+Funkció Leírás
+Rétegvastagság beállítása Minőség és sebesség szabályozása
+Kitöltés (infill) A modell belső szerkezetének meghatározása
+DigitPET – Vizsgaremek dokumentáció
+10
+Funkció Leírás
+Támaszok (supports) Túlnyúló részek alátámasztása
+Hőmérséklet kezelés Nozzle és tárgyasztal hőmérséklet
+Sebesség beállítás Nyomtatási idő optimalizálása
+A 3D nyomtatás alapvető paraméterei
+A nyomtatás minőségét és sikerességét számos technikai paraméter befolyásolja:
+Fontos beállítások
+Paraméter Jelentés Tipikus érték (PLA esetén)
+Fúvóka hőmérséklet Az extrudált anyag hőmérséklete 190–220 °C
+Tárgyasztal hőmérséklet Tapadás biztosítása 50–70 °C
+Rétegvastagság Egy réteg magassága 0,1–0,2 mm
+Nyomtatási sebesség Fej mozgási sebessége 40–100 mm/s
+Kitöltés (infill) Belső sűrűség 10–30%
+Hűtés (fan) Rétegek gyors megszilárdítása 50–100%
+A nyomtatási folyamat lépései
+1. 3D modell elkészítése (CAD)
+2. Szeletelés (Cura)
+3. G-kód betöltése a nyomtatóra
+4. Kalibráció (pl. ágy szintezés)
+DigitPET – Vizsgaremek dokumentáció
+11
+5. Nyomtatás elindítása
+6. Utómunka (tisztítás, csiszolás)
+Előnyök és gyakorlati jelentőség a projektben
+A 3D nyomtatás alkalmazása a DigitPET projektben számos előnyt biztosít:
+● Gyors prototípusgyártás
+● Egyedi, személyre szabott biléták készítése
+● Alacsony költség kis darabszám esetén
+● Könnyű módosíthatóság (digitális modell alapján)
+A Bambu Lab és a Creality Ender nyomtatók kombinált használata lehetővé tette, hogy a
+fejlesztés során egyszerre legyen jelen a gyors, automatizált gyártás és a részletes, kézi
+beállításokon alapuló tanulási folyamat.
+5. A biléta tervezése és gyártása a gyakorlatban
+A DigitPET projekt egyik kulcseleme a fizikai biléta megtervezése és előállítása volt, amely
+ötvözi az esztétikai megjelenést és a funkcionalitást. A tervezési folyamat során figyelembe
+kellett venni az NFC chip elhelyezését, a tartósságot, valamint a felhasználói igényeket is.
+Tervezési szempontok
+A biléta kialakításánál az alábbi fő szempontokat vettük figyelembe:
+● Funkcionalitás – az NFC chip megfelelő működésének biztosítása
+● Méret és súly – kényelmes viselet állatok számára
+DigitPET – Vizsgaremek dokumentáció
+12
+● Tartósság – ellenálljon külső hatásoknak (víz, ütés)
+● Esztétika – egyedi, személyre szabható megjelenés
+● Rögzíthetőség – könnyű felhelyezés nyakörvre
+Kiemelten fontos volt, hogy az NFC chip ne legyen árnyékolva fémmel vagy túl vastag
+műanyaggal, mivel ez csökkentheti az olvashatóságot.
+3D modellezés folyamata
+A biléta tervezése digitális 3D modell formájában történt, CAD (Computer-Aided Design)
+szoftver segítségével. A modellezés során az alábbi lépéseket követtük:
+1. Alapforma kialakítása
+(pl. kör, csont alak, egyedi forma)
+2. Vastagság meghatározása
+o általában 2–4 mm
+o elegendő szilárdság biztosítása mellett
+3. NFC chip helyének kialakítása
+o belső üreg vagy mélyítés
+o pontos illeszkedés biztosítása
+4. Feliratok és egyedi elemek hozzáadása
+o név, ikonok, díszítések
+o domborított vagy süllyesztett formában
+5. Rögzítő lyuk kialakítása
+o kulcskarika vagy nyakörv számára
+DigitPET – Vizsgaremek dokumentáció
+13
+NFC chip integrálása
+A gyártási folyamat egyik kritikus pontja az NFC chip megfelelő elhelyezése volt.
+Lehetséges megoldások:
+● Nyomtatás közbeni beágyazás
+(a nyomtatás megszakítása után a chip behelyezése)
+● Utólagos ragasztás
+(kialakított üregbe történő rögzítés)
+A projekt során jellemzően az utólagos behelyezést alkalmaztuk, mivel ez egyszerűbb és
+kevesebb hibalehetőséget tartalmaz.
+Fontos szempontok:
+● A chip ne mozduljon el
+● Ne sérüljön a nyomtatás során
+● Megfelelő távolság legyen a felülettől az olvashatóság érdekében
+Gyártási folyamat a gyakorlatban
+A teljes gyártási folyamat több lépésből állt:
+1. Modell exportálása
+A kész 3D modellt STL formátumba exportáltuk.
+2. Szeletelés
+A modellt a Ultimaker Cura programba importáltuk, ahol beállítottuk a nyomtatási
+paramétereket:
+● rétegvastagság
+DigitPET – Vizsgaremek dokumentáció
+14
+● kitöltés
+● hőmérsékletek
+● támaszok
+3. Nyomtatás
+A nyomtatást a következő eszközökkel végeztük:
+● Bambu Lab 3D nyomtatók
+● Creality Ender sorozat
+A Bambu Lab nyomtatók esetében a folyamat nagyrészt automatizált volt, míg az Ender
+gépeknél több manuális beállításra volt szükség (pl. ágy szintezés).
+4. NFC chip behelyezése
+A nyomtatás után a chipet a kialakított helyre illesztettük és rögzítettük.
+5. Utómunka
+Az elkészült bilétákon az alábbi utómunkálatokat végeztük:
+● támaszok eltávolítása
+● felület tisztítása
+● szükség esetén csiszolás
+1. Kész 3D nyomtatott biléta
+DigitPET – Vizsgaremek dokumentáció
+15
+Gyakori hibák és megoldások
+A 3D nyomtatás során több tipikus hiba is előfordulhat, amelyeket a projekt során
+tapasztaltunk:
+Hiba Jelenség Megoldás
+Warping A modell szélei felpöndörödnek Tárgyasztal hőmérséklet növelése
+Stringing Szálhúzás a részek között Retract beállítás finomítása
+Layer shifting Rétegelcsúszás Szíjak és mechanika ellenőrzése
+Rossz tapadás Modell elválik az ágytól Bed leveling, tapadó felület használata
+Alulextrudálás Hiányos rétegek Hőmérséklet növelése, nozzle tisztítás
+Összegzés
+A biléta tervezése és gyártása során a digitális modellezés, a 3D nyomtatás és az NFC
+technológia szoros együttműködése valósult meg. A folyamat jól szemlélteti, hogyan lehet egy
+ötletből működő, kézzelfogható terméket létrehozni modern technológiák segítségével.
+A projekt során szerzett tapasztalatok hozzájárultak a gyártási folyamat megértéséhez, a hibák
+felismeréséhez és azok hatékony kezeléséhez, ami kulcsfontosságú a jövőbeni fejlesztések és
+továbbfejlesztések szempontjából.
+6. A projekt kezdeti fázisai
+A projekt első szakaszában a problémát fogalmaztuk meg: hogyan lehetne a házi kedvencek
+azonosítását egyszerűbbé tenni a hétköznapi emberek számára? A hagyományos chipek jók, de
+a kiolvasásukhoz külön eszköz kell. Mi azt szerettük volna elérni, hogy a megtaláló saját
+telefonjával azonnal hozzáférjen a szükséges információkhoz.
+DigitPET – Vizsgaremek dokumentáció
+16
+A második szakaszban technológiai döntéseket hoztunk. Meghatároztuk, hogy a weboldal
+fejlesztéséhez HTML, CSS és PHP nyelveket használunk. Az adatokat MySQL-alapú
+adatbázisban tároljuk, amelyet phpMyAdmin felületen kezelünk. A kódolás Visual Studio
+Code-ban történik, a verziókövetést GitHub biztosítja, a szerverre feltöltést WinSCP
+segítségével végezzük, a publikus futtatást pedig a nethely.hu tárhelyén oldjuk meg.
+A harmadik szakasz a tervezés volt. Elkészítettük a felhasználói folyamatokat: regisztráció,
+bejelentkezés, kisállat hozzáadása, adatlap szerkesztése, adatlap megjelenítése NFC-n keresztül.
+Ezután felosztottuk a feladatokat a csapattagok között, és elkezdtük a prototípus-fejlesztést.
+A negyedik szakaszban elkészítettük az első működő verziókat. Ezek még nem a végleges
+dizájnt célozták, hanem a működés ellenőrzését: adatbázis-kapcsolat, adatmentés,
+adatlekérdezés, telefonos megnyitás, valamint a biléta gyakorlati használhatósága.
+7. A fejlesztéshez használt programok és technológiák részletes bemutatása
+Ebben a fejezetben részletesen bemutatjuk azokat a programokat és technológiákat, amelyeket
+a DigitPET weboldal és a hozzá kapcsolódó rendszer fejlesztése során használtunk. Mivel a
+dokumentációban kifejezetten fontos a programhasználat részletes kidolgozása, ezért minden
+eszköznél bemutatjuk annak szerepét, előnyeit, használati módját és a projektben betöltött
+konkrét funkcióját.
+7.1 HTML – a weboldal szerkezeti felépítése
+A HTML a weboldalak alapvető leírónyelve, amely meghatározza az oldal szerkezetét és a
+tartalom logikai felépítését. A DigitPET projektben a HTML segítségével építettük fel a
+kezdőoldalt, a navigációt, a regisztrációs és bejelentkezési űrlapokat, a kisállat adatlapokat,
+valamint az adminisztrációs vagy szerkesztő felületek alapstruktúráját.
+A HTML használatának egyik legfontosabb előnye a kiszámítható, stabil szerkezet. Egy
+vizsgaremek esetében nem elég az, hogy az oldal 'szép legyen'; annak logikusan felépítettnek,
+könnyen karbantarthatónak és bővíthetőnek is kell lennie. A HTML-ben ezért szemantikus
+elemeket, például fejléceket, szekciókat, űrlapelemeket, gombokat és strukturált blokkokat
+használtunk.
+DigitPET – Vizsgaremek dokumentáció
+17
+A projektben különösen fontos volt az űrlapok helyes kialakítása. A regisztrációhoz és az
+adatmódosításhoz szövegmezőket, e-mail mezőket, telefonszám mezőket, textarea elemeket és
+gombokat használtunk. Ezek a felhasználói adatbevitel alapját adták, és közvetlen kapcsolatban
+álltak a PHP backenddel.
+7.2 CSS – megjelenés, dizájn és reszponzivitás
+A CSS felelős a weboldal vizuális megjelenéséért. A DigitPET projekt esetében különösen
+fontos volt, hogy az oldal modern, tiszta, átlátható és mobilbarát legyen. Mivel a rendszer egyik
+fő felhasználási módja az, hogy valaki telefonról megnyitja a biléta adatlapját, ezért a mobilos
+megjelenés elsődleges szempont volt.
+A CSS segítségével alakítottuk ki a színeket, betűméreteket, margókat, térközöket,
+gombstílusokat, kártyaszerű információs blokkokat és az oldal teljes vizuális hierarchiáját. A
+legfontosabb adatok – például a gazdi telefonszáma vagy az orvosi figyelmeztetések –
+hangsúlyosabb megjelenítést kaptak, hogy stresszhelyzetben is gyorsan felismerhetők legyenek.
+Reszponzív kialakítást is alkalmaztunk, ami azt jelenti, hogy az oldal különböző
+kijelzőméreteken is megfelelően jelenik meg. A CSS media query-k és rugalmas konténerek
+segítségével biztosítottuk, hogy telefonon se legyen vízszintes görgetés, a gombok jól
+megérinthetők maradjanak, és az oldal olvashatósága ne romoljon.
+7.3 PHP – backend és dinamikus működés
+A PHP a DigitPET projekt szerveroldali működésének központi eleme, amely biztosítja a teljes
+alkalmazás dinamikus működését és adatkezelési logikáját. A fejlesztési folyamat során a
+backend oldali feladatokat PHP nyelven valósítottuk meg, amely lehetővé teszi a kliens és az
+adatbázis közötti kommunikáció kezelését. A programozás során a Visual Studio Code fejlesztői
+környezetet használtuk, amely hatékony eszközöket biztosított a kódíráshoz, hibakereséshez és
+a projekt strukturált felépítéséhez.
+A rendszer egyik legfontosabb feladata a felhasználói adatok kezelése, amely teljes mértékben
+PHP alapokon működik. A regisztrációs folyamat során a PHP feldolgozza az űrlapból érkező
+adatokat, ellenőrzi azok helyességét, majd sikeres validáció esetén elmenti azokat az
+adatbázisba. A bejelentkezési rendszer esetében a megadott adatokat összeveti a tárolt
+DigitPET – Vizsgaremek dokumentáció
+18
+adatokkal, és megfelelő egyezés esetén session változók segítségével biztosítja a felhasználó
+azonosítását.
+A kisállatok adatainak kezelése szintén PHP segítségével történik. Az alkalmazás képes új
+állatok rögzítésére, meglévő adatok módosítására, valamint az adatok lekérdezésére és
+megjelenítésére. A backend logika biztosítja, hogy az egyes állatok adatai megfelelően
+kapcsolódjanak a felhasználókhoz, így minden felhasználó csak a saját állatait tudja kezelni. Ez
+relációs adatbázis használatával valósul meg, ahol az egyes rekordok között kulcsok biztosítják
+az összekapcsolást.
+A PHP egyik kiemelkedő szerepe az adatellenőrzés és a biztonságos adatkezelés. A rendszer
+minden beérkező adatot szerveroldalon validál, amely magában foglalja:
+● kötelező mezők ellenőrzését
+● adatformátumok vizsgálatát
+● hibás vagy hiányos adatok kiszűrését
+Ez azért elengedhetetlen, mert a kliensoldali ellenőrzések nem tekinthetők megbízhatónak. A
+PHP segítségével biztosítható, hogy csak megfelelő struktúrájú és biztonságos adatok
+kerüljenek az adatbázisba.
+A dinamikus tartalomkezelés szintén a PHP egyik legfontosabb feladata. A projekt során
+számos oldalt dinamikusan generáltunk, például:
+● kisállat adatlap megjelenítése azonosító alapján
+● bejelentkezett felhasználóhoz tartozó lista generálása
+● adatbázisból lekért adatok HTML-be illesztése
+Ez a megközelítés lehetővé teszi, hogy az oldal tartalma minden felhasználó számára
+egyedileg jelenjen meg, a saját adatai alapján.
+A session-kezelés szintén PHP segítségével valósult meg, amely biztosítja a felhasználói állapot
+megőrzését a különböző oldalak között. A session változók tárolják például a felhasználó
+DigitPET – Vizsgaremek dokumentáció
+19
+azonosítóját, így az alkalmazás képes felismerni, hogy ki van bejelentkezve, és ennek
+megfelelően szabályozni a hozzáférést. Ez alapvető fontosságú a jogosultságkezelés
+szempontjából.
+A fejlesztés során a PHP kódot moduláris felépítésben készítettük el, ami azt jelenti, hogy külön
+fájlok kezelték például:
+● az adatbázis kapcsolatot
+● az űrlapfeldolgozást
+● az egyes funkciók logikáját
+Ez a struktúra átláthatóbbá és könnyebben karbantarthatóvá teszi a rendszert, valamint
+lehetőséget ad a későbbi bővítésre is.
+A PHP használata során fontos szempont volt a hibakezelés is. A rendszer képes kezelni a
+sikertelen adatbázis-műveleteket, valamint visszajelzést adni a felhasználónak hibás adatbevitel
+esetén. Ez javítja a felhasználói élményt és segíti a hibák gyors felismerését.
+A PHP és a HTML szoros integrációja lehetővé tette, hogy a frontend és backend logika
+egymással összhangban működjön. A szerveroldalon generált tartalom közvetlenül megjelenik
+a felhasználó számára, így nincs szükség külön adatlekérő rétegre vagy bonyolult kliensoldali
+feldolgozásra.
+A DigitPET projektben a PHP alkalmazása egyértelműen megmutatja a dinamikus
+webfejlesztés alapelveit, és lehetővé teszi egy olyan rendszer működését, amely valós időben
+reagál a felhasználói műveletekre, kezeli az adatokat, és biztosítja a rendszer megbízható
+működését.
+7.4 Visual Studio Code – részletes fejlesztői környezet bemutatás
+A Visual Studio Code volt a teljes projekt elsődleges fejlesztői környezete. Ezt a programot
+azért választottuk, mert gyors, stabil, jól bővíthető, és kiválóan alkalmas HTML, CSS és PHP
+DigitPET – Vizsgaremek dokumentáció
+20
+alapú projektek fejlesztésére. Egy vizsgaremeknél különösen fontos, hogy a fejlesztői környezet
+támogassa az átlátható, hatékony és hibamentes munkát.
+A VS Code egyik legnagyobb előnye a syntax highlighting, vagyis a kódkiemelés. A különböző
+nyelvi elemek színezése segített abban, hogy gyorsan észrevegyük a hiányzó zárójeleket,
+lezáratlan tageket, hibás idézőjeleket vagy egyéb szerkezeti problémákat. Ez főleg a HTML és
+PHP kombinált használatánál volt nagyon hasznos.
+A program IntelliSense funkciója automatikus kódkiegészítést biztosított. Ez felgyorsította a
+munkát, csökkentette az elírásokat, és segített abban, hogy egységesebben írjuk meg a kódot. A
+CSS tulajdonságok, HTML elemek és sok esetben a PHP struktúrák automatikus felajánlása
+jelentős időmegtakarítást eredményezett.
+A VS Code beépített terminálja lehetővé tette, hogy ugyanabban a programban dolgozzunk a
+kóddal és a Git-parancsokkal is. Ez különösen akkor volt hasznos, amikor commitokat
+készítettünk, ellenőriztük a fájlállapotokat vagy gyorsan akartunk navigálni a projektmappák
+között.
+A mappastruktúra kezelése szintén erős pontja a VS Code-nak. A projekt során egyszerre
+kezeltünk PHP fájlokat, stíluslapokat, képeket, feltöltött erőforrásokat és konfigurációs
+állományokat. A bal oldali fájlkezelő panel gyors navigációt biztosított, ami nagyban
+megkönnyítette a hibakeresést és a strukturált fejlesztést.
+7.5 phpMyAdmin – adatbázis kezelőfelület részletes bemutatása
+A phpMyAdmin egy széles körben elterjedt, böngészőből elérhető grafikus adatbázis-kezelő
+felület, amely lehetővé teszi a MySQL vagy MariaDB alapú adatbázisok egyszerű és hatékony
+adminisztrációját. A rendszer egyik legnagyobb előnye, hogy nem igényel külön kliensprogram
+telepítését, mivel teljes mértékben webes felületen keresztül működik, így könnyen integrálható
+fejlesztői környezetekbe, például XAMPP használata esetén.
+DigitPET – Vizsgaremek dokumentáció
+21
+A DigitPET projekt fejlesztése során a phpMyAdmin kulcsszerepet játszott az adatbázis
+felépítésében és karbantartásában. Ezen keresztül hoztuk létre az adatbázist, definiáltuk a
+szükséges táblákat, valamint beállítottuk az egyes mezők adattípusait (pl. INT, VARCHAR,
+DATE). Emellett meghatároztuk az elsődleges kulcsokat (PRIMARY KEY), valamint az
+automatikus növekedést biztosító mezőket (AUTO_INCREMENT), amelyek elengedhetetlenek
+a rekordok egyedi azonosításához.
+A phpMyAdmin grafikus felületének köszönhetően gyorsan és átlátható módon tudtuk kezelni
+az adatokat. Lehetőségünk volt rekordok manuális beszúrására, módosítására és törlésére, ami
+különösen hasznos volt a fejlesztési és tesztelési fázisban. Az adatok táblázatos formában
+jelennek meg, ami megkönnyíti az áttekintést és a hibák gyors felismerését.
+A rendszer egyik kiemelkedő funkciója az SQL lekérdezések futtatásának lehetősége. Ennek
+segítségével nemcsak az alapvető műveleteket végezhettük el (SELECT, INSERT, UPDATE,
+DELETE), hanem összetettebb lekérdezéseket is kipróbálhattunk. Ez különösen fontos volt a
+hibakeresés során, mivel lehetővé tette, hogy pontosan ellenőrizzük az adatbázis állapotát, és
+azonosítsuk az esetleges problémák forrását.
+A DigitPET fejlesztése során a phpMyAdmin segítségével rendszeresen ellenőriztük, hogy a
+weboldalról érkező adatok megfelelően kerülnek-e mentésre. Például validáltuk, hogy a
+regisztráció során megadott adatok valóban bekerülnek a users táblába, illetve hogy a kisállatok
+adatai megfelelő módon kapcsolódnak a felhasználókhoz. Emellett azt is vizsgáltuk, hogy az
+adatmódosítási műveletek valóban frissítik-e a meglévő rekordokat, vagy esetleg új bejegyzést
+hoznak létre hibás működés esetén.
+A phpMyAdmin további hasznos funkciói közé tartozik az adatbázis exportálása és importálása,
+amely lehetővé teszi biztonsági mentések készítését, illetve az adatok egyszerű átvitelét más
+környezetekbe (pl. fejlesztői környezetből éles szerverre). Ez különösen fontos volt a projekt
+telepítése során.
+DigitPET – Vizsgaremek dokumentáció
+22
+7.6 A XAMPP környezet és a phpMyAdmin adatbázis-kezelő részletes
+bemutatása
+A webes alkalmazások fejlesztéséhez elengedhetetlen egy olyan környezet biztosítása, amely
+képes kiszolgálni a szerveroldali működést. A DigitPET projekt során erre a célra a XAMPP
+nevű integrált fejlesztői csomagot használtuk, amely lehetővé teszi egy teljes értékű helyi
+(localhost) webszerver környezet kialakítását.
+A XAMPP egy olyan szoftvercsomag, amely több fontos komponenst foglal magában:
+● Apache webszerver
+● MySQL/MariaDB adatbázis-kezelő
+● PHP szerveroldali programozási nyelv támogatása
+● phpMyAdmin adatbázis-kezelő felület
+Ezek együttesen biztosítják, hogy a fejlesztés során internetkapcsolat nélkül, helyi gépen is
+futtatható és tesztelhető legyen a teljes webalkalmazás.
+A XAMPP szerepe a projektben
+A DigitPET rendszer fejlesztése során a XAMPP kulcsszerepet töltött be, mivel ezen keresztül
+tudtuk:
+● futtatni a PHP alapú weboldalt
+● kezelni az adatbázis-kapcsolatokat
+● tesztelni az űrlapok működését
+● ellenőrizni az adatok mentését és lekérdezését
+A fejlesztési folyamat során a projekt fájljait a XAMPP htdocs mappájába helyeztük, amely az
+Apache webszerver alapértelmezett gyökérkönyvtára. Így a weboldal böngészőből a localhost
+címen keresztül volt elérhető.
+DigitPET – Vizsgaremek dokumentáció
+23
+A phpMyAdmin rendszer részletes bemutatása
+A phpMyAdmin egy böngészőből elérhető grafikus felület, amely lehetővé teszi MySQL vagy
+MariaDB adatbázisok kezelését programozás nélkül, illetve SQL parancsok segítségével is.
+A rendszer egyik legnagyobb előnye, hogy felhasználóbarát módon biztosít hozzáférést az
+adatbázis struktúrájához és tartalmához, miközben haladó funkciókat is kínál.
+A phpMyAdmin főbb funkciói
+Funkció Részletes leírás
+Adatbázis létrehozás Új adatbázisok létrehozása különböző kódolással
+Táblák kezelése Táblák létrehozása, törlése, módosítása
+Mezők beállítása Adattípusok, kulcsok, indexek meghatározása
+Rekordok kezelése Adatok beszúrása, módosítása, törlése
+SQL lekérdezések Egyedi parancsok futtatása
+Import/Export Adatbázis mentése és visszatöltése
+Kapcsolatok kezelése Idegen kulcsok (foreign key) beállítása
+Adatbázis tervezés és használat a projektben
+A DigitPET rendszer relációs adatbázisra épül, amelyben az adatok strukturált módon,
+egymással kapcsolatban kerülnek tárolásra.
+A fejlesztés során például az alábbi táblákat hoztuk létre:
+● users – felhasználói adatok
+DigitPET – Vizsgaremek dokumentáció
+24
+● pets – kisállatok adatai
+● kapcsolatok – a felhasználók és állatok közötti összerendelések
+A phpMyAdmin segítségével:
+● meghatároztuk a mezők típusát (pl. INT, VARCHAR, DATE)
+● beállítottuk az elsődleges kulcsokat (PRIMARY KEY)
+● létrehoztuk az automatikus azonosítókat (AUTO_INCREMENT)
+Adatellenőrzés és hibakeresés
+A fejlesztési folyamat során a phpMyAdmin kiemelt szerepet játszott a hibakeresésben.
+Gyakran előfordul, hogy egy weboldalon jelentkező hiba valójában az adatbázis szintjén
+keletkezik.
+A rendszer segítségével ellenőrizni tudtuk:
+● hogy a regisztráció során az adatok bekerülnek-e a felhasznalok táblába
+● hogy a kisállatok adatai megfelelően kapcsolódnak-e a felhasználókhoz
+● hogy az adatmódosítások valóban frissítik-e a meglévő rekordokat
+● hogy az űrlapokból érkező adatok nem hibás formátumban kerülnek-e mentésre
+Ez különösen fontos volt a backend logika tesztelése során.
+SQL használata a gyakorlatban
+Bár a phpMyAdmin grafikus felületet biztosít, a projekt során SQL lekérdezéseket is
+alkalmaztunk a pontosabb működés érdekében.
+Példák:
+DigitPET – Vizsgaremek dokumentáció
+25
+● SELECT – adatok lekérdezése
+● INSERT – új rekord létrehozása
+● UPDATE – adatok módosítása
+● DELETE – adatok törlése
+Az SQL használata lehetővé tette az adatok gyors ellenőrzését és a hibák pontos lokalizálását.
+A XAMPP és phpMyAdmin előnyei
+A projekt során szerzett tapasztalatok alapján az alábbi előnyök emelhetők ki:
+● Egyszerű telepítés és használat
+● Komplett fejlesztői környezet egy csomagban
+● Gyors tesztelési lehetőség internet nélkül
+● Grafikus és parancssoros adatbázis-kezelés kombinációja
+● Kezdők és haladók számára egyaránt megfelelő
+7.7 GitHub – felhőalapú mentés és verziókövetés
+A GitHub a projekt verziókezelésének és felhőalapú tárolásának központi eszköze volt. A
+fejlesztés során nemcsak az számít, hogy elkészüljenek a fájlok, hanem az is, hogy a
+módosítások követhetők legyenek, vissza lehessen térni korábbi állapotokhoz, és a csapat tagjai
+összehangoltan tudjanak dolgozni.
+A GitHub repository segítségével minden fontos változtatást commitokban rögzítettünk. Ez azt
+jelentette, hogy egy-egy fejlesztési lépés – például új oldal létrehozása, hibajavítás,
+dizájnfrissítés vagy adatbázis-kapcsolat módosítása – dokumentált formában megmaradt. Ez
+nemcsak biztonsági szempontból hasznos, hanem a projekt szakmai bemutathatóságát is erősíti.
+DigitPET – Vizsgaremek dokumentáció
+26
+A GitHub további előnye, hogy a projektet több gépről is biztonságosan el lehet érni. Ha otthon
+vagy iskolában másik eszközön kellett dolgozni, a legfrissebb állapot mindig rendelkezésre állt.
+Emellett adatvesztés ellen is védelmet nyújtott, mivel a kód nem csak lokálisan létezett.
+7.8 WinSCP – szerverre feltöltés és fájlszinkronizáció
+A WinSCP egy olyan program, amelynek segítségével a helyi számítógépről fájlokat tölthetünk
+fel a webszerverre. A DigitPET projekt esetében ez különösen fontos volt, mert a fejlesztés
+során gyakran kellett frissíteni a PHP, CSS vagy képfájlokat a tárhelyen, hogy az online verziót
+azonnal tesztelni tudjuk.
+A WinSCP kétpaneles felülete nagyban megkönnyítette a munkát. Az egyik oldalon a helyi
+fájlrendszer, a másikon a szerveren lévő fájlok láthatók. Így gyorsan ellenőrizhető volt, hogy
+melyik fájl hiányzik, melyik régi, és melyiket kell felülírni. Ez különösen hasznos volt
+hibakereséskor, amikor gyorsan kellett kizárni azt a lehetőséget, hogy az online verzióban nem
+a legfrissebb fájl fut.
+A program használata szakmai szempontból azért is értékes, mert bemutatja a valódi telepítési
+folyamatot. A projekt nem csupán helyi fejlesztői környezetben működött, hanem valódi
+tárhelyre is felkerült, ami sokkal életszerűbbé és erősebbé teszi a vizsgaremeket.
+7.9 nethely.hu – ingyenes webtárhely használata
+A nethely.hu szolgáltatását azért választottuk, mert tanulási és vizsgaremek célra megfelelő
+lehetőséget nyújt arra, hogy a weboldalunk valós online környezetben fusson. A projekt
+szempontjából kulcsfontosságú volt, hogy a rendszer ne csak helyi gépen működjön, hanem
+interneten keresztül is elérhető legyen, hiszen az NFC-biléta a gyakorlatban csak így
+használható.
+A nethely.hu tárhelyén a PHP oldalak valódi szerverkörnyezetben futottak, az adatbáziskapcsolat működött, és mobiltelefonról is ellenőrizhető volt az oldal. Ez lehetővé tette, hogy
+valós teszteket végezzünk: például a bilétáról megnyíló oldal betöltési sebességét, a publikus
+URL működését és a mobilos megjelenést is.
+A tárhely használata során megtanultuk a telepítés és üzemeltetés gyakorlati oldalát is: helyes
+fájlstruktúra, adatbázis hozzáférési adatok, elérési utak kezelése, gyors hibajavítás és
+DigitPET – Vizsgaremek dokumentáció
+27
+újrafeltöltés. Ezek a tapasztalatok túlmutatnak az egyszerű kódoláson, és komoly plusz értéket
+adnak a dokumentációnak.
+8. Adatbázis-tervezés és logikai felépítés
+A rendszer működésének egyik legfontosabb része az adatbázis. Mivel a DigitPET több
+felhasználó, több kisállat és ezekhez kapcsolódó információk kezelésére készült, ezért szükség
+volt egy jól átgondolt relációs adatmodellre. Az alábbi táblázat egy javasolt, logikailag jól
+felépített szerkezetet mutat be, amely jól illeszkedik a projekt céljaihoz.
+Tábla neve Fő mezők Szerepe Kapcsolat
+felhasznalok id, felhasznalonev,
+email, jelszo,
+letrehozva, is_admin
+Gazdik adatainak
+tárolása
+Az allatok és a
+rendeles táblához
+kapcsolódik
+allatok id, felhasznalo_id,
+kutya_nev, fajta,
+Kisállatok adatlapja A kosar és a
+felhasznalok
+táblához csatlakozik
+rendeles id, felhasznalo_id,
+datum, teljesitett,
+nev, email, cim,
+telefonszam
+A rendelések
+leadására szolgál,
+rögzíti a
+rendeléseket
+A felhasznalok és a
+kosar táblához
+kapcslolódik
+forma id, forma A biléta formáját
+tárolja
+A kosar táblához
+szin id, szin A biléta színét
+tárolja
+A kosar táblához
+kosar id, rendeles_id,
+szin_id, forma_id,
+allat_id,
+termek_tipus, stb.
+A kosár funkciót
+szolgálja ki, összegzi
+a rendelést.
+Az allatok, forma,
+szin, rendeles
+táblához
+DigitPET – Vizsgaremek dokumentáció
+28
+1. Adatbázis kapcsolati rajza
+A fenti struktúra lehetővé teszi, hogy egy gazdihoz több állat is tartozzon, és minden állathoz
+egyedi NFC-biléta legyen hozzárendelve. Ez bővíthető, karbantartható és logikailag jól
+elkülöníti az egyes felelősségi köröket az adatkezelésben.
+9. Projektstruktúra és fájlszervezés
+Fájl / mappa Funkció Megjegyzés
+index.php Kezdőoldal A projekt belépési pontja
+login.php Bejelentkezés Felhasználó hitelesítése
+register.php Regisztráció Új gazdi létrehozása
+profil.php Felhasználói profil Saját adatok kezelése
+DigitPET – Vizsgaremek dokumentáció
+29
+allat.php Kisállat adatlap Publikus vagy belső
+megjelenítés
+kapcsolat.php Adatbázis-kapcsolat PDO / MySQLi beállítások
+style.css Központi stíluslap Egységes megjelenés
+Egyéb fájlok a
+gyökérkönyvtárban
+(jpg, png, stb.)
+Képek és ikonok Statikus erőforrások
+Feltöltött fájlok Kisállat képek / egyéb
+tartalom
+10. Hibakeresés és tesztelés részletes bemutatása
+A fejlesztési folyamat egyik legfontosabb része a hibakeresés és a tesztelés volt. Egy jó projekt
+nem attól lesz erős, hogy elsőre minden hibátlanul működik, hanem attól, hogy a fejlesztők
+képesek a hibákat tudatosan feltárni, elemezni, javítani és dokumentálni. A DigitPET esetében
+ez különösen fontos volt, mert a rendszernek nemcsak asztali környezetben, hanem
+mobiltelefonon és valódi online elérés mellett is megbízhatóan kellett működnie.
+A tesztelés során több szinten ellenőriztük a rendszert. Először a kód szerkezetét vizsgáltuk:
+helyes HTML felépítés, CSS megjelenés, PHP szintaktikai hibák. Ezután adatbázis-szinten
+ellenőriztük, hogy az adatok megfelelően mentődnek-e, frissülnek-e és lekérdezhetők-e. Végül
+online környezetben is teszteltünk, hogy a tárhelyre feltöltött verzió is ugyanúgy működik-e,
+mint a helyi példány.
+Sorszám Vizsgált funkció Várt eredmény Tényleges
+eredmény / hiba
+Javítás
+1 Adatbáziskapcsolat
+Sikeres csatlakozás Hibás belépési
+adatok miatt
+kapcsolat hiba
+config.php
+ellenőrzése és
+javítása
+DigitPET – Vizsgaremek dokumentáció
+30
+2 Regisztráció Új felhasználó
+létrejön
+Hiányos mezők
+esetén hibás
+mentési kísérlet
+Szerveroldali
+validáció
+hozzáadása
+3 Bejelentkezés Csak helyes
+adatokkal belépés
+Nem egyértelmű
+hibaüzenet
+Felhasználóbarát
+visszajelzés
+4 Kisállat mentése Adatok a megfelelő
+userhez kerülnek
+Rossz user_id
+hozzárendelés
+Session logika
+javítása
+5 Mobil nézet Nincs vízszintes
+görgetés
+Túl széles
+konténerek
+CSS szélesség és
+media query
+javítás
+6 NFC link Megfelelő adatlap
+nyílik meg
+Hibás relatív
+útvonal
+Publikus teljes
+URL használata
+7 WinSCP feltöltés Friss fájlok futnak
+online
+Régi fájlverzió
+maradt fent
+Felülírás és cache
+ellenőrzése
+8 Kép megjelenítés Kép betöltődik Hibás elérési út uploads mappa és
+útvonal javítása
+A tesztelés módszertana tudatos volt: minden új funkció után azonnali funkcionális tesztet
+végeztünk. Például ha új mezőt adtunk hozzá a kisállat adatlaphoz, akkor nemcsak azt néztük
+meg, hogy az űrlapon megjelenik-e, hanem azt is, hogy mentődik-e az adatbázisba,
+visszatöltődik-e szerkesztéskor, és publikus nézetben is helyesen jelenik-e meg.
+Külön figyelmet fordítottunk a felhasználói élményre is. Mivel a projekt egyik fő célcsoportja
+egy laikus megtaláló, ezért a felületnek gyorsan értelmezhetőnek kell lennie. Emiatt
+mobiltelefonon külön teszteltük a betöltési sebességet, az olvashatóságot, a gombok méretét, a
+kiemelések láthatóságát és az információk sorrendjét is.
+A hibakeresés során a böngésző fejlesztői eszközeit, a PHP hibaüzeneteit, a phpMyAdmin
+adatellenőrzést, valamint a szerveren lévő fájlok összehasonlítását is használtuk. Ez azért volt
+DigitPET – Vizsgaremek dokumentáció
+31
+fontos, mert sokszor a felületen látható hiba nem ott keletkezik, ahol elsőre gondolnánk. A
+valódi okok feltárása és megszüntetése jelentette a legnagyobb szakmai fejlődést a projekt során.
+11. Telepítés, üzembe helyezés és biztonsági szempontok
+A projekt fejlesztésének egyik legfontosabb célja az volt, hogy a rendszer ne csupán lokális
+fejlesztői környezetben (pl. XAMPP használatával), hanem valós, publikus környezetben is
+megbízhatóan működjön. Ennek érdekében a fejlesztési folyamat során folyamatosan
+törekedtünk arra, hogy a webalkalmazást éles környezethez hasonló feltételek között is
+teszteljük és optimalizáljuk.
+A telepítési folyamat első lépéseként a projekt fájljait feltöltöttük a tárhelyszolgáltató
+szerverére, jellemzően FTP kapcsolaton keresztül. Kiemelt figyelmet kellett fordítani a
+megfelelő mappastruktúra kialakítására, mivel a webalkalmazás működése nagymértékben függ
+attól, hogy a fájlok milyen elérési útvonalon helyezkednek el. A relatív és abszolút elérési utak
+helyes használata kulcsfontosságú volt, különösen CSS, JavaScript és képfájlok betöltése
+esetén.
+A telepítés során ellenőriztük, hogy minden szükséges fájl – beleértve a backend PHP
+állományokat, a frontend elemeket, valamint az adatbázis-kapcsolathoz szükséges
+konfigurációs fájlokat – megfelelően felkerült-e a szerverre. Gyakori probléma lehet például
+egy hiányzó include fájl vagy hibás elérési út, amely a rendszer működésképtelenségét
+eredményezheti.
+Az adatbázis üzembe helyezése szintén kritikus lépés volt. A tárhelyen létrehoztuk az adatbázist,
+majd importáltuk a fejlesztés során kialakított táblaszerkezetet (pl. SQL dump fájl segítségével).
+Ezt követően beállítottuk az adatbázis-kapcsolati paramétereket (hosztnév, felhasználónév,
+jelszó, adatbázis neve) a PHP konfigurációs fájlokban. Fontos volt annak ellenőrzése, hogy a
+kapcsolat stabilan működik, és a rendszer képes adatokat lekérdezni és menteni.
+A rendszer működését több platformon is teszteltük, különös tekintettel a mobil eszközökre.
+Mivel a projekt egyik központi eleme az NFC-alapú elérés, elengedhetetlen volt, hogy a
+weboldal mobiltelefonon is gyorsan betöltődjön, reszponzív legyen, és megfelelően kezelje a
+DigitPET – Vizsgaremek dokumentáció
+32
+különböző képernyőméreteket. A tesztelés során ellenőriztük az NFC érintés után megnyíló
+oldalak működését, a betöltési időt, valamint a felhasználói élményt.
+Biztonsági szempontok
+A webalkalmazás fejlesztése során kiemelt figyelmet fordítottunk a biztonságra, mivel a
+rendszer személyes adatokat is kezel (pl. felhasználói adatok, elérhetőségek, kisállat
+információk).
+Az egyik legfontosabb alapelv az volt, hogy nem hagyatkozunk kizárólag kliensoldali
+ellenőrzésekre (JavaScript), mivel ezek könnyen megkerülhetők. Ezért minden fontos
+adatellenőrzést szerveroldalon, PHP segítségével is elvégeztünk.
+Alkalmazott biztonsági megoldások
+Terület Megoldás
+Adatellenőrzés Kötelező mezők, formátumok (pl. e-mail) ellenőrzése
+Hozzáférés-kezelés Felhasználók csak saját adataikat érhetik el
+Adatkapcsolat Biztonságos adatbázis kapcsolódás
+Hibakezelés Hibák megjelenítésének korlátozása
+A szerveroldali validáció során ellenőriztük:
+● hogy minden kötelező mező ki van-e töltve
+● hogy az adatok megfelelő formátumban érkeznek-e (pl. e-mail cím)
+● hogy nem érkezik-e üres vagy hibás adat
+Emellett figyeltünk arra is, hogy a felhasználók csak a saját adataikhoz férjenek hozzá. Ez
+különösen fontos volt az adatvédelem szempontjából, mivel egy hibás implementáció esetén
+más felhasználók adatai is elérhetővé válhatnának.
+DigitPET – Vizsgaremek dokumentáció
+33
+További biztonsági fejlesztési lehetőségek
+Bár a rendszer alapvető biztonsági funkciókkal rendelkezik, számos további fejlesztési
+lehetőség is azonosítható, amelyek egy magasabb szintű, professzionális webalkalmazás
+irányába mutatnak.
+Javasolt fejlesztések
+Terület Leírás
+Jelszókezelés Jelszavak biztonságos hash-elése (pl. bcrypt)
+CSRF védelem Kérések hitelességének ellenőrzése tokenekkel
+Session kezelés Biztonságos munkamenet-kezelés
+Jogosultságkezelés Többszintű felhasználói szerepkörök
+Adatvédelem Publikus adatok szabályozása
+A jelszavak titkosítása (hash-elése) különösen fontos, mivel így egy esetleges adatbázisszivárgás esetén sem kerülnek ki olvasható formában az érzékeny adatok. A modern PHP
+függvények (pl. password_hash, password_verify) használata ajánlott.
+A CSRF (Cross-Site Request Forgery) elleni védelem biztosítja, hogy a felhasználó ne hajtson
+végre akaratlan műveleteket egy másik weboldalról érkező kérés hatására. Ez token alapú
+ellenőrzéssel valósítható meg.
+A session-kezelés továbbfejlesztése (pl. session timeout, session ID regenerálás) szintén
+hozzájárul a biztonság növeléséhez.
+DigitPET – Vizsgaremek dokumentáció
+34
+12. Összegzés
+A DigitPET projekt sikeresen ötvözi a modern webfejlesztést, az adatbázis-kezelést, az NFCtechnológiát és a 3D nyomtatást egyetlen, valós problémára megoldást adó rendszerben. A
+projekt nemcsak technikailag összetett, hanem társadalmilag is hasznos, hiszen hozzájárulhat az
+elveszett házi kedvencek gyorsabb hazajuttatásához.
+A fejlesztés során alkalmazott eszközök – HTML, CSS, PHP, Visual Studio Code,
+phpMyAdmin, GitHub, WinSCP és nethely.hu – mind hozzájárultak ahhoz, hogy a rendszer
+valós környezetben is működőképes legyen. A projekt külön erőssége, hogy nem csupán
+elméleti, hanem gyakorlati és bemutatható formában készült el.
+13. Továbbfejlesztési lehetőségek
+A DigitPET projekt jelenlegi formájában egy működőképes és jól használható rendszert biztosít,
+azonban számos olyan továbbfejlesztési lehetőség azonosítható, amelyek révén a rendszer
+funkcionalitása, biztonsága és piaci értéke jelentősen növelhető. A fejlesztés során már több
+olyan irány is kirajzolódott, amelyek mentén a projekt egy komplexebb, akár üzleti szempontból
+is értékes termékké alakítható.
+Funkcionális bővítési lehetőségek
+A jelenlegi rendszer alapvetően egy kisállat és gazdi adatkezelő megoldás, azonban ez több
+irányba is tovább bővíthető.
+Az egyik legfontosabb fejlesztési irány a több kisállat kezelésének teljes körű támogatása.
+Bár a rendszer alap szinten képes erre, a jövőben érdemes lenne ezt strukturáltabb módon
+kezelni, például külön nézetekkel, szűrési lehetőségekkel és részletesebb adatkapcsolatokkal.
+További lehetőség egy egészségügyi modul kialakítása, amely tartalmazhatná:
+● oltási adatok nyilvántartását
+● állatorvosi látogatások naplózását
+DigitPET – Vizsgaremek dokumentáció
+35
+● gyógyszeres kezelések rögzítését
+● emlékeztetők beállítását (pl. következő oltás időpontja)
+Ez a funkció különösen hasznos lenne a gazdik számára, mivel egy helyen kezelhetnék
+kedvencük teljes egészségügyi előzményeit.
+Egy másik fontos fejlesztési irány a képfeltöltés és médiakezelés. A felhasználók
+feltölthetnének képeket a kisállatukról, amely:
+● segíti az azonosítást elvesztés esetén
+● személyesebbé teszi a rendszert
+● növeli a felhasználói élményt
+Az eseménynapló (activity log) bevezetése szintén hasznos lehet, amely rögzíti a rendszerben
+történt változásokat (pl. adatmódosítások, belépések). Ez nemcsak fejlesztési, hanem biztonsági
+szempontból is előnyös.
+Egy adminisztrációs felület kibővítése lehetővé tenné:
+● felhasználók kezelését
+● tartalom moderálását
+● statisztikák megtekintését
+● rendszerhibák nyomon követését
+Mobil és felhasználói élmény fejlesztése
+A rendszer jelenleg böngészőből érhető el, azonban a jövőben jelentős előrelépést jelentene egy
+külön mobilos megoldás bevezetése.
+Két fő irány lehetséges:
+● Natív mobilalkalmazás (Android/iOS)
+DigitPET – Vizsgaremek dokumentáció
+36
+● PWA (Progressive Web App)
+A PWA különösen előnyös lehet, mivel:
+● telepíthető a telefonra alkalmazásként
+● offline működést is támogathat
+● gyorsabb betöltést biztosít
+● push értesítések küldésére is alkalmas
+Ez különösen fontos az NFC használat szempontjából, hiszen a gyors reakcióidő kritikus lehet
+egy elveszett állat esetén.
+3D nyomtatás továbbfejlesztési lehetőségei
+A fizikai termék, azaz a biléta szintén számos módon tovább fejleszthető.
+Anyaghasználat fejlesztése
+A jelenlegi PLA alapanyag mellett érdemes lehet:
+● PETG használata (jobb vízállóság és tartósság)
+● TPU (rugalmas anyag) alkalmazása (strapabíróbb kivitel)
+Fizikai kialakítás
+● vízálló vagy fröccsenésálló kivitel
+● zárt NFC chip elhelyezés
+● ütésálló kialakítás
+Dizájn és testreszabás
+● különböző formák (csont, kör, egyedi design)
+● több méret (kis- és nagytestű állatokhoz)
+DigitPET – Vizsgaremek dokumentáció
+37
+● színvariációk
+● gravírozott vagy kiemelt feliratok
+Ez lehetővé teszi a termék személyre szabását, amely növeli a felhasználói elégedettséget és a
+piaci értéket is.
+Biztonsági és technikai fejlesztések
+A rendszer továbbfejlesztése során kiemelten fontos a biztonság növelése.
+Lehetséges irányok:
+● jelszavak korszerű hash-elése
+● token alapú azonosítás
+● CSRF és XSS védelem erősítése
+● HTTPS kötelező használata
+● részletes jogosultságkezelés
+Ezen kívül érdemes lehet API alapú kommunikációt kialakítani, amely lehetővé teszi más
+rendszerekkel való integrációt is (pl. mobilalkalmazás, külső szolgáltatások).
+Piaci és üzleti továbbfejlesztési lehetőségek
+A projekt nemcsak technikai, hanem üzleti szempontból is továbbgondolható.
+Lehetséges irányok:
+● webshop integráció (biléták értékesítése)
+● előfizetéses rendszer (prémium funkciók)
+● partnerkapcsolatok (állatorvosok, menhelyek)
+DigitPET – Vizsgaremek dokumentáció
+38
+● márkaépítés és egyedi termékcsalád kialakítása
+Egy jól kidolgozott rendszer akár startup alapját is képezheti.
+14. Melléklet – Javasolt szóbeli védési pontok és szakmai kiemelések
+● Miért jelent előnyt a hétköznapi felhasználó számára az NFC-alapú azonosítás a
+hagyományos chipleolvasással szemben?
+● Milyen előnyei vannak annak, hogy a projekt egyszerre webes rendszer és fizikai
+termék?
+● Miért választottuk a PHP technológiát, és milyen backend feladatokat lát el?
+● Hogyan segítette a VS Code a hibakeresést és a gyors fejlesztést?
+● Miért fontos a phpMyAdmin a tesztelés és adatellenőrzés szempontjából?
+● Hogyan támogatta a GitHub a csapatmunkát és a biztonságos verziókezelést?
+● Miért volt szükség WinSCP használatára a tárhelyes teszteléshez?
+● Milyen további biztonsági és funkcionális fejlesztéseket lehetne megvalósítani?
+
+DigitPET – Vizsgaremek dokumentáció
+39
+15. Ábrajegyzék: 
+1. Kész 3D nyomtatott biléta .................................................................................................. 14
+1. Adatbázis kapcsolati rajza .................................................................................................. 28
+16. Irodalom Jegyzék: 
